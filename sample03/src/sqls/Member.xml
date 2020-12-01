@@ -6,11 +6,6 @@
 <mapper namespace="Member">
 
 
-<select id="allMember" resultType="bit.com.a.dto.MemberDto">
-	SELECT * FROM SELLER
-</select>
-
-
 <select id="getId" parameterType="java.lang.String" resultType="java.lang.Integer">
 	SELECT NVL(COUNT(*), 0)
 	FROM SELLER
@@ -25,7 +20,7 @@
 </insert>
 
 <select id="login" parameterType="bit.com.a.dto.MemberDto"
-	 resultType="bit.com.a.dto.MemberDto">
+	resultType="bit.com.a.dto.MemberDto">
 	SELECT SELLER_ID, SELLER_PWD, SELLER_COMPANY_NAME,SELLER_CEO, SELLER_COMPANY_NUMBER    
 			, SELLER_BUSINESS_CONDITION, SELLER_BUSINESS_KIND, SELLER_ADDRESS1, SELLER_ADDRESS2          
 			, SELLER_ADDRESS3, SELLER_TEL_NUM, SELLER_PHONE_NUM, SELLER_EMAIL

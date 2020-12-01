@@ -24,13 +24,6 @@
 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
 	</bean>
 	
-	
-	<!-- 
-	InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-	viewResolver.prefix = "/WEB-INF/views/";
-	viewResolver.suffix = ".jsp";
-	 -->
-	
 	<!-- java 공통 팩키지 -->
 	<context:component-scan base-package="bit.com.a" />
 	

@@ -14,12 +14,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired				// ioc
 	MemberDao memberDao;	// MemberDao memberDao = new MemberDaoImpl();
-	
-	
-	@Override
-	public List<MemberDto> allMember() {		
-		return memberDao.allMember();
-	}
+
 	
 
 	@Override

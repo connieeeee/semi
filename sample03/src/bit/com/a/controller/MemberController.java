@@ -41,7 +41,7 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping(value="idcheck", method=RequestMethod.POST)
-	public String idcheck(String id) {
+	public String idcheck(String id)throws Exception {
 		
 		int count = memberService.getId(id);
 		
@@ -55,7 +55,7 @@ public class MemberController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "regiAf", method=RequestMethod.POST)
-	public String regiAf(MemberDto dto) {
+	public String regiAf(MemberDto dto)throws Exception {
 		
 		boolean b = memberService.addmember(dto);
 		if(b) {
@@ -65,23 +65,24 @@ public class MemberController {
 		}
 	}
 
-	@RequestMapping(value = "loginAf", method= {RequestMethod.POST, RequestMethod.GET})
-	public String loginAf (MemberDto dto, HttpServletRequest req) {
+	@RequestMapping(value = "loginAf", method=RequestMethod.POST)
+	public String loginAf(MemberDto dto, HttpServletRequest req) {
+		System.out.println("MemberController loginAf()");
 		
-		MemberDto login  = memberService.login(dto);
-		
+		MemberDto login = memberService.login(dto);
 		
 		if(login != null && !login.getId().equals("")) {
-			
+			// session
 			req.getSession().setAttribute("login", login);
-			//req.getSession().setMaxInactiveInterval(60 * 60 * 8);
+			req.getSession().setMaxInactiveInterval(60 * 60 * 8);
 			
 			return "redirect:/main";
-		}else {
-			return "redirect:/login";
 		}
-		
+		else {
+			return "redirect:/login";
+		}		
 	}
+	
 	@RequestMapping(value = "main",method= {RequestMethod.POST, RequestMethod.GET})
 	public String main(Model model, HttpServletRequest req) throws Exception{
 		MemberDto user = (MemberDto)req.getSession().getAttribute("login");

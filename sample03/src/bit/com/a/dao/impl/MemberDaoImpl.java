@@ -1,6 +1,5 @@
 package bit.com.a.dao.impl;
 
-import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +16,6 @@ public class MemberDaoImpl implements MemberDao {
 	
 	String namespace = "Member.";
 	
-	@Override
-	public List<MemberDto> allMember() {
-		List<MemberDto> list = sqlSession.selectList(namespace + "allMember");
-		return list;
-	}
-	
 	
 	@Override
 	public int getId(String id) {		
@@ -34,7 +27,6 @@ public class MemberDaoImpl implements MemberDao {
 		int n = sqlSession.insert(namespace + "addmember", mem);		
 		return n>0?true:false;
 	}
-
 
 	@Override
 	public MemberDto login(MemberDto dto) {
