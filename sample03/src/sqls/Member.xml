@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Member">
+
+
+<select id="allMember" resultType="bit.com.a.dto.MemberDto">
+	SELECT * FROM SELLER
+</select>
+
+
+<select id="getId" parameterType="java.lang.String" resultType="java.lang.Integer">
+	SELECT NVL(COUNT(*), 0)
+	FROM SELLER
+	WHERE SELLER_ID=#{id}
+</select>
+
+<insert id="addmember" parameterType="bit.com.a.dto.MemberDto">
+	INSERT INTO SELLER(SELLER_ID, SELLER_PWD, SELLER_COMPANY_NAME,SELLER_CEO, SELLER_COMPANY_NUMBER    
+						, SELLER_BUSINESS_CONDITION, SELLER_BUSINESS_KIND, SELLER_ADDRESS1, SELLER_ADDRESS2          
+						, SELLER_ADDRESS3, SELLER_TEL_NUM, SELLER_PHONE_NUM, SELLER_EMAIL)
+	VALUES(#{id}, #{pwd}, #{companyName}, #{ceo}, #{companyNumber}, #{businessCondition}, #{businessKind}, #{address1}, #{address2},#{address3}, #{tel}, #{phone},#{email})
+</insert>
+
+<select id="login" parameterType="bit.com.a.dto.MemberDto"
+	 resultType="bit.com.a.dto.MemberDto">
+	SELECT SELLER_ID, SELLER_PWD, SELLER_COMPANY_NAME,SELLER_CEO, SELLER_COMPANY_NUMBER    
+			, SELLER_BUSINESS_CONDITION, SELLER_BUSINESS_KIND, SELLER_ADDRESS1, SELLER_ADDRESS2          
+			, SELLER_ADDRESS3, SELLER_TEL_NUM, SELLER_PHONE_NUM, SELLER_EMAIL
+	FROM SELLER
+	WHERE SELLER_ID=#{id} AND SELLER_PWD=#{pwd}
+</select>
+
+
+
+</mapper>
+
+
+
+
+
+
+
+

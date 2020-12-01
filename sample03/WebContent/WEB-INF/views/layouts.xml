@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+<definition name="login.tiles" template="/WEB-INF/views/login/login.jsp">
+</definition>
+
+<definition name="regi.tiles" template="/WEB-INF/views/login/regi.jsp">
+</definition>
+
+<definition name="main.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
+	<put-attribute name="navi" value="/WEB-INF/views/commons/navi.jsp"/>	
+	<put-attribute name="header" value="/WEB-INF/views/commons/header.jsp"/>	
+	<put-attribute name="main" value="/WEB-INF/views/main/main.jsp"/>	
+	<put-attribute name="footer" value="/WEB-INF/views/commons/footer.jsp"/>
+</definition>
+
+<definition name="buyer.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
+	<put-attribute name="navi" value="/WEB-INF/views/commons/navi.jsp"/>	
+	<put-attribute name="header" value="/WEB-INF/views/commons/header.jsp"/>	
+	<put-attribute name="main" value="/WEB-INF/views/main/buyer.jsp"/>	
+	<put-attribute name="footer" value="/WEB-INF/views/commons/footer.jsp"/>
+</definition>
+
+<definition name="product.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
+	<put-attribute name="navi" value="/WEB-INF/views/commons/navi.jsp"/>	
+	<put-attribute name="header" value="/WEB-INF/views/commons/header.jsp"/>	
+	<put-attribute name="main" value="/WEB-INF/views/main/product.jsp"/>	
+	<put-attribute name="footer" value="/WEB-INF/views/commons/footer.jsp"/>
+</definition>
+
+<definition name="tradebook.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
+	<put-attribute name="navi" value="/WEB-INF/views/commons/navi.jsp"/>	
+	<put-attribute name="header" value="/WEB-INF/views/commons/header.jsp"/>	
+	<put-attribute name="main" value="/WEB-INF/views/main/tradebook.jsp"/>	
+	<put-attribute name="footer" value="/WEB-INF/views/commons/footer.jsp"/>
+</definition>
+
+<definition name="orderbook.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
+	<put-attribute name="navi" value="/WEB-INF/views/commons/navi.jsp"/>	
+	<put-attribute name="header" value="/WEB-INF/views/commons/header.jsp"/>	
+	<put-attribute name="main" value="/WEB-INF/views/main/orderbook.jsp"/>	
+	<put-attribute name="footer" value="/WEB-INF/views/commons/footer.jsp"/>
+</definition>
+
+<definition name="total.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
+	<put-attribute name="navi" value="/WEB-INF/views/commons/navi.jsp"/>	
+	<put-attribute name="header" value="/WEB-INF/views/commons/header.jsp"/>	
+	<put-attribute name="main" value="/WEB-INF/views/main/total.jsp"/>	
+	<put-attribute name="footer" value="/WEB-INF/views/commons/footer.jsp"/>
+</definition>
+</tiles-definitions>
+
+
+
+
+
