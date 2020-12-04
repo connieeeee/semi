@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Product">
+
+<select id="getProductList" parameterType="java.lang.String" resultType="bit.com.a.dto.ProductDto">
+	SELECT *
+	FROM PRODUCT
+	WHERE SELLER_ID = #{seller_id }
+</select>
+
+<insert id="add_product_sort" parameterType="java.lang.String">
+INSERT INTO PRODUCT_SORT
+VALUES(#{product_sort});
+</insert>
+
+<insert id="add_product_unit_cate" parameterType="java.lang.String">
+INSERT INTO PRODUCT_UNIT_CATE
+VALUES(SEQ_PRODUCT_UNIT_CATE.NEXTVAL,#{product_unit_cate });
+</insert>
+
+</mapper>

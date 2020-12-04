@@ -15,8 +15,8 @@ public class BuyerServiceImpl implements BuyerService {
 	BuyerDao dao;
 	
 	@Override
-	public List<BuyerDto> getBuyerList(String buyer_id) {
-		return dao.getBuyerList(buyer_id);
+	public List<BuyerDto> getBuyerList(String seller_id) {
+		return dao.getBuyerList(seller_id);
 	}
 
 	@Override
@@ -25,18 +25,19 @@ public class BuyerServiceImpl implements BuyerService {
 	}
 
 	@Override
-	public boolean add_buyer(BuyerDto dto) {
-		return dao.add_buyer(dto);
+	public void add_buyer(BuyerDto dto) {
+		dao.add_buyer(dto);
 	}
 
 	@Override
-	public boolean update_buyer(BuyerDto dto) {
-		return dao.update_buyer(dto);
+	public void update_buyer(BuyerDto dto) {
+		System.out.println("seviceimpl: " + dto.getBuyer_address1());
+		dao.update_buyer(dto);
 	}
 
 	@Override
-	public BuyerDto get_buyer_inform(BuyerDto dto) {
-		return dao.get_buyer_inform(dto);
+	public BuyerDto get_buyer_inform(int buyer_seq) {
+		return dao.get_buyer_inform(buyer_seq);
 	}
 
 }

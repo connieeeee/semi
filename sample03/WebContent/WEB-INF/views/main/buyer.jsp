@@ -11,8 +11,8 @@
 				<td>연락처</td>
 			</tr>
 			<c:if test="${not empty list }">
-				<c:forEach items="buyer" varStatus="by">
-					<tr>
+				<c:forEach  items="${list}" var="by">
+					<tr onclick="show_list(${by.buyer_seq})">
 						<td>${by.buyer_company_name }</td>
 						<td>${by.buyer_ceo }</td>
 						<td>${by.buyer_tel_num }</td>
@@ -30,7 +30,7 @@
 	</div>
 	<div class="wrap-inform">
 		<form id="add-frm" method="post">
-		<input type="hidden" value="${id }">
+		<input type="hidden" value="${id }" name="seller_id">
 			<div class="company-name">
 				<p class="name-company">
 					거래처명
@@ -76,14 +76,10 @@
 					주소
 				</p>
 				<span>
-					<input type="text" size="10" name="buyer_address1" id="postNum" placeholder="우편번호" readonly="readonly" onclick="DaumPostcode()" />
+					<input type="text" size="10" name="buyer_address1" id="postNum" placeholder="우편번호" onclick="DaumPostcode()" />
 					<input type="button" name="searchAddr" onclick="DaumPostcode()" value="우편번호 찾기" />
-					<input type="text" size="60" name="buyer_address2" id="roadAddress" placeholder="도로명주소" readonly="readonly" onclick="DaumPostcode()" />
-					<input type="text" name="wAddress" id="buyer_address3" placeholder="상세주소" size="60" />
-						
-					<input type="text" id="buyerAddress1" name="buyer_address1">
-					<input type="text" id="buyerAddress2" name="buyer_address2">
-					<input type="text" id="buyerAddress3" name="buyer_address3">
+					<input type="text" size="60" name="buyer_address2" id="roadAddress" placeholder="도로명주소" onclick="DaumPostcode()" />
+					<input type="text" name="buyer_address3" id="wAddress" placeholder="상세주소" size="60" />
 				</span>
 			</div>
 			<div class="company-admin">
@@ -102,12 +98,12 @@
 					<input type="text" id="CompanyEmail" name="buyer_email">
 				</span>
 			</div>
-			<div class="company-email">
-				<p class="company-email-p">
-					이메일
+			<div class="company-tel">
+				<p class="company-tel-p">
+					전화번호
 				</p>
 				<span>
-					<select name="tel1" id="tel1">
+					<select id="tel1">
 						<option value="02">02</option>
 						<option value="031">031</option>
 						<option value="033">033</option>
@@ -119,10 +115,11 @@
 						<option value="061">061</option>
 						<option value="064">064</option>
 						<option value="070">070</option>
-				</select> <input type="tel" id="tel2" name="tel2" size="4" maxlength="4"
+				</select> <input type="tel" id="tel2" size="4" maxlength="4"
 					onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" />-
-					<input type="tel" id="tel3" name="tel3" size="4" maxlength="4"
+					<input type="tel" id="tel3" size="4" maxlength="4"
 					onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
+					<input type="text" id="tel_num" name="buyer_tel_num">
 				</span>
 			</div>
 			<div class="company-date">
@@ -158,10 +155,40 @@
 <script type="text/javascript">
 $(function(){
 	$("#submit").on("click",function(){
-		$("#add-frm").attr("action","add_buyer");
+		var buyer_tel_num = $("#tel1 option:selected").val() + $("#tel2").val() + $("#tel3").val(); 
+		$("#tel_num").attr("value",buyer_tel_num);
+	 	$("#add-frm").attr("action","add_buyer");
 		javascript.location.reload;
 	});
 });
+function show_list(seq){
+	$.ajax({
+		url:"show_inform",
+		type:"get",
+		data:{"buyer_seq" : seq},
+		success:function(list){
+		
+			$("#companyName").val(list.buyer_company_name);
+			$("#ceoName").val(list.buyer_ceo);
+			$("#businessCondition").val(list.buyer_business_condition);
+			$("#businessKinds").val(list.buyer_business_kinds);
+			$("#CompanyNumber").val(list.buyer_company_num);
+/* 			$("#companyName").val(list.buyer_company_name);
+			$("#companyName").val(list.buyer_company_name);
+			$("#companyName").val(list.buyer_company_name); */
+			$("#CompanyAdmin").val(list.buyer_admin);
+			$("#CompanyEmail").val(list.buyer_email);
+ 			$("#postNum").val(list.buyer_address1);
+			$("#roadAddress").val(list.buyer_address2);
+			$("#wAddress").val(list.buyer_address3); 
+			$("#CompanyDate").val(list.buyer_date);
+			$("#CompanyHomepage").val(list.buyer_homepage);
+			$("#CompanyMemo").val(list.buyer_memo);
+			
+
+		}
+	});
+}
 </script>
 
 

@@ -6,9 +6,9 @@ import bit.com.a.dto.BuyerDto;
 
 public interface BuyerService {
 
-	List<BuyerDto> getBuyerList(String buyer_id);
+	List<BuyerDto> getBuyerList(String seller_id);
 	int check_buyer (BuyerDto dto);
-	boolean add_buyer(BuyerDto dto);
-	boolean update_buyer(BuyerDto dto);
-	BuyerDto get_buyer_inform(BuyerDto dto);
+	void add_buyer(BuyerDto dto);
+	void update_buyer(BuyerDto dto);
+	BuyerDto get_buyer_inform(int buyer_seq);
 }

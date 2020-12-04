@@ -9,10 +9,11 @@
 			<input type="password" id="pwd" name="pwd" placeholder="비밀번호">
 		</div>
 		<div>
-			<input type="submit" id="login" value="로그인"> <input
-				type="button" id="regi" value="회원기입 ">
+			<input type="button" id="login" value="로그인"> 
+			<input type="button" id="regi" value="회원기입 ">
 		</div>
 	</form>
+	<a href="main">main</a>
 </div>
 <p></p>
 <script type="text/javascript">
@@ -29,7 +30,20 @@
 				alert("비밀번호를 입력해주세요");
 				$("#pwd").focus();
 			} else {
-				$("#_frmForm").attr("action","loginAf").submit();
+				$.ajax({
+					url:'loginAf',
+					type:'post',
+					data:{'id':$("#id").val(),
+							'pwd':$("#pwd").val()},
+					success:function(msg){
+						alert(msg);
+						if(msg == 'ok'){
+							location.href="main";
+						}else{
+							alert("ss");
+						}
+					}
+				});
 			}
 		});
 	});

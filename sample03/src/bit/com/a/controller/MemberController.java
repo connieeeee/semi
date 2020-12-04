@@ -25,18 +25,13 @@ public class MemberController {
 	@Autowired	// DI IOC
 	MemberService memberService;
 	
-	@RequestMapping(value = "login", method=RequestMethod.GET)
-	public String login(Model model) {
-		
-		List<MemberDto> list = memberService.allMember();
-		model.addAttribute("memlist", list);
-		
-		return "login.tiles";
-	}
-	
 	@RequestMapping(value = "regi", method=RequestMethod.GET)
 	public String regi() {
 		return "regi.tiles";
+	}
+	@RequestMapping(value = "login", method=RequestMethod.GET)
+	public String login() {
+		return "login.tiles";
 	}
 	
 	@ResponseBody
@@ -64,30 +59,41 @@ public class MemberController {
 			return "fail";
 		}
 	}
-
-	@RequestMapping(value = "loginAf", method=RequestMethod.POST)
-	public String loginAf(MemberDto dto, HttpServletRequest req) {
-		System.out.println("MemberController loginAf()");
+	@ResponseBody
+	@RequestMapping(value = "loginAf", method= {RequestMethod.POST, RequestMethod.GET})
+	public String loginAf(MemberDto dto,Model model, HttpServletRequest req) {
+		System.out.println("MemberController loginAf()" + dto.getId() + dto.getPwd());
 		
-		MemberDto login = memberService.login(dto);
+	//	MemberDto login = memberService.login(dto);
 		
+		MemberDto n = memberService.login(dto);
+		MemberDto o = memberService.get(dto.getId());
+	/*	
 		if(login != null && !login.getId().equals("")) {
 			// session
 			req.getSession().setAttribute("login", login);
 			req.getSession().setMaxInactiveInterval(60 * 60 * 8);
 			
-			return "redirect:/main";
+			model.addAttribute("id", login.getId());
+			
+			return "ok";
 		}
 		else {
-			return "redirect:/login";
-		}		
+			return "no";
+		}	
+	*/
+		
+		return o + "";
 	}
 	
 	@RequestMapping(value = "main",method= {RequestMethod.POST, RequestMethod.GET})
 	public String main(Model model, HttpServletRequest req) throws Exception{
-		MemberDto user = (MemberDto)req.getSession().getAttribute("login");
-
-		model.addAttribute("id", user.getId());
+	
+		req.getSession().setAttribute("login", "aaa");
+		
+		String user = (String)req.getSession().getAttribute("login");
+		
+		model.addAttribute("id", user);
 		return "main.tiles";
 	}
 	

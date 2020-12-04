@@ -8,11 +8,7 @@ if(session.getAttribute("id")!=null){
 	System.out.println("id" + id);
 }
 %>
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
+
 		<style type="text/css">
 			header{width:100%;}
 			header #header #nav_UnderBar table{margin-left: 35px;}
@@ -76,8 +72,7 @@ if(session.getAttribute("id")!=null){
 			.id{color: gray;}
 			header #header  #left50{margin-left:2%;}
 		</style>
-	</head>
-	<body>
+	
 	<input type="hidden" value="${id }" id="id">
 		<header>
 			<nav>
@@ -94,7 +89,7 @@ if(session.getAttribute("id")!=null){
 				<div id='nav_UnderBar'>
 					<div align='left'>
 						<a href='main?id='+ ${id }+''>
-							<img src=".\img\logo.png" class='logo'>
+							<img src="\resources\img\logo.png" class='logo'>
 						</a>
 					</div>
 					<div id='left50'>
@@ -133,6 +128,5 @@ if(session.getAttribute("id")!=null){
 				}	
 			}
 		</script>
-	</body>
-</html>
+
     

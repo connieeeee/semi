@@ -27,12 +27,22 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.addmember(mem);		
 	}
 
-
+/*
 	@Override
 	public MemberDto login(MemberDto dto) {
 		return memberDao.login(dto);
 	}
+*/
 	
+	@Override
+	public MemberDto login(MemberDto dto) {
+		return memberDao.login(dto);
+	}
+
+	@Override
+	public MemberDto get(String id) {
+		return memberDao.get(id);
+	}
 }
 
 

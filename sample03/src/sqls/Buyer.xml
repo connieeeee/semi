@@ -10,14 +10,14 @@
 			BUYER_BUSINESS_KINDS, BUYER_COMPANY_NUM, BUYER_ADDRESS1, BUYER_ADDRESS2, BUYER_ADDRESS3,
 			BUYER_ADMIN, BUYER_EMAIL, BUYER_TEL_NUM, BUYER_DATE, BUYER_MEMO, BUYER_HOMEPAGE
 	FROM BUYER
-	WHERE SELLER_ID = #{buyer_id}
+	WHERE SELLER_ID = #{seller_id}
 </select>
 
 <select id="check_buyer" parameterType="bit.com.a.dto.BuyerDto" resultType="java.lang.Integer">
 	SELECT NVL(COUNT(*),0)
 	FROM BUYER
 	WHERE SELLER_ID = #{seller_id }
-	AND BUYER_EMAIL = #{buyer_email }
+	AND BUYER_COMPANY_NUM = #{buyer_company_num }
 </select>
 
 <insert id="add_buyer" parameterType="bit.com.a.dto.BuyerDto">
@@ -34,25 +34,24 @@
 	BUYER_COMPANY_NAME = #{buyer_company_name },
 	BUYER_CEO = #{buyer_ceo },
 	BUYER_BUSINESS_CONDITION = #{buyer_business_condition },
-	BUYER_BUSINESS_KINDS = ,
-	BUYER_COMPANY_NUM = #{buyer_business_kinds },
+	BUYER_BUSINESS_KINDS = #{buyer_business_kinds },
+	BUYER_COMPANY_NUM = #{buyer_company_num },
 	BUYER_ADDRESS1 = #{buyer_address1 },
 	BUYER_ADDRESS2 = #{buyer_address2 },
 	BUYER_ADDRESS3 = #{buyer_address3 },
 	BUYER_ADMIN = #{buyer_admin },
 	BUYER_EMAIL = #{buyer_email },
 	BUYER_TEL_NUM = #{buyer_tel_num },
-	BUYER_DATE = #{buyer_date },
 	BUYER_MEMO = #{buyer_memo },
 	BUYER_HOMEPAGE = #{buyer_homepage }
 	WHERE BUYER_SEQ  = #{buyer_seq }
 </update>
 
-<select id="get_buyer_inform" parameterType="bit.com.a.dto.BuyerDto" resultType="java.lang.Integer">
+<select id="get_buyer_inform" parameterType="java.lang.Integer" resultType="bit.com.a.dto.BuyerDto">
 	SELECT BUYER_SEQ, SELLER_ID, BUYER_COMPANY_NAME, BUYER_CEO, BUYER_BUSINESS_CONDITION,
 			BUYER_BUSINESS_KINDS, BUYER_COMPANY_NUM, BUYER_ADDRESS1, BUYER_ADDRESS2, BUYER_ADDRESS3,
 			BUYER_ADMIN, BUYER_EMAIL, BUYER_TEL_NUM, BUYER_DATE, BUYER_MEMO, BUYER_HOMEPAGE
 	FROM BUYER
-	WHERE SELLER_ID = #{buyer_seq }
+	WHERE BUYER_SEQ = #{buyer_seq }
 </select>
 </mapper>

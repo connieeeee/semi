@@ -18,8 +18,8 @@ public class BuyerDaoImpl implements BuyerDao {
 	String ns = "Buyer.";
 	
 	@Override
-	public List<BuyerDto> getBuyerList(String buyer_id) {
-		List<BuyerDto> list = session.selectList(ns + "getBuyerList", buyer_id);
+	public List<BuyerDto> getBuyerList(String seller_id) {
+		List<BuyerDto> list = session.selectList(ns + "getBuyerList", seller_id);
 		return list;
 	}
 
@@ -29,20 +29,19 @@ public class BuyerDaoImpl implements BuyerDao {
 	}
 
 	@Override
-	public boolean add_buyer(BuyerDto dto) {
-		int count = session.insert(ns + "add_buyer", dto);
-		return count > 0 ? true:false;
+	public void add_buyer(BuyerDto dto) {
+		session.insert(ns + "add_buyer", dto);
 	}
 
 	@Override
-	public boolean update_buyer(BuyerDto dto) {
-		int count = session.update(ns + "update_buyer", dto);
-		return count > 0 ? true:false;
+	public void update_buyer(BuyerDto dto) {
+		System.out.println("daoimpl: " + dto.getBuyer_address1());
+		session.update(ns + "update_buyer", dto);
 	}
 
 	@Override
-	public BuyerDto get_buyer_inform(BuyerDto dto) {
-		return session.selectOne(ns + "get_buyer", dto);
+	public BuyerDto get_buyer_inform(int buyer_seq) {
+		return session.selectOne(ns + "get_buyer_inform", buyer_seq);
 	}
 
 }

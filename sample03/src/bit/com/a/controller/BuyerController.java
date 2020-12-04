@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import bit.com.a.dto.BuyerDto;
 import bit.com.a.dto.MemberDto;
@@ -55,26 +56,42 @@ public class BuyerController {
 	@RequestMapping(value = "buyer",method= {RequestMethod.POST, RequestMethod.GET})
 	public String buyer(String id, Model model, HttpServletRequest req) throws Exception{
 		
-		MemberDto user = (MemberDto)req.getSession().getAttribute("login");
-		List<BuyerDto> list = service.getBuyerList(id);
+		String user = (String)req.getSession().getAttribute("login");
 		
-		model.addAttribute("id", user.getId());
+//		MemberDto user = (MemberDto)req.getSession().getAttribute("login");
+		List<BuyerDto> list = service.getBuyerList(user);
+
+		model.addAttribute("id", user);
 		model.addAttribute("list", list);
 		
 		return "buyer.tiles";
 	}
 	
 	@RequestMapping(value = "add_buyer",method= {RequestMethod.POST, RequestMethod.GET})
-	public void buyer(BuyerDto dto, Model model, HttpServletRequest req) throws Exception{
+	public String buyer(BuyerDto dto, Model model, HttpServletRequest req) throws Exception{
 		
-		MemberDto user = (MemberDto)req.getSession().getAttribute("login");
+//		MemberDto user = (MemberDto)req.getSession().getAttribute("login");
+		
+		
+		
 		int n = service.check_buyer(dto);
 		
 		if(n > 0) {
 			service.update_buyer(dto);
+			System.out.println("update");
+			return "redirect:/buyer";
 		}else {
 			service.add_buyer(dto);
+			System.out.println("add");
+			return "redirect:/buyer";
 		}
+	}
+	@ResponseBody
+	@RequestMapping(value = "show_inform",method= {RequestMethod.POST, RequestMethod.GET})
+	public BuyerDto show_inform(int buyer_seq, Model model) throws Exception{
+		BuyerDto dto = service.get_buyer_inform(buyer_seq);
+		
+		return dto;
 	}
 	
 }

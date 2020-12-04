@@ -28,13 +28,23 @@ public class MemberDaoImpl implements MemberDao {
 		return n>0?true:false;
 	}
 
+/*	@Override
+	public MemberDto login(MemberDto dto) {
+		MemberDto mem = sqlSession.selectOne(namespace + "login", dto);
+		return mem;
+	}
+*/	
 	@Override
 	public MemberDto login(MemberDto dto) {
 		MemberDto mem = sqlSession.selectOne(namespace + "login", dto);
 		return mem;
 	}
-	
 
+@Override
+public MemberDto get(String id) {
+	MemberDto mem = sqlSession.selectOne(namespace + "get", id);
+	return mem;
+}
 	
 }
 

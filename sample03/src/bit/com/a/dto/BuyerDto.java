@@ -35,7 +35,7 @@ SELECT * FROM BUYER;							--���̺�Ȯ��
  */
 public class BuyerDto implements Serializable {
 	private int buyer_seq;
-	private String buyer_id;
+	private String seller_id;
 	private String buyer_company_name;
 	private String buyer_ceo;
 	private String buyer_business_condition;
@@ -53,13 +53,13 @@ public class BuyerDto implements Serializable {
 
 	public BuyerDto() {}
 
-	public BuyerDto(int buyer_seq, String buyer_id, String buyer_company_name, String buyer_ceo,
+	public BuyerDto(int buyer_seq, String seller_id, String buyer_company_name, String buyer_ceo,
 			String buyer_business_condition, String buyer_business_kinds, String buyer_company_num,
 			String buyer_address1, String buyer_address2, String buyer_address3, String buyer_admin, String buyer_email,
 			String buyer_tel_num, String buyer_date, String buyer_memo, String buyer_homepage) {
 		super();
 		this.buyer_seq = buyer_seq;
-		this.buyer_id = buyer_id;
+		this.seller_id = seller_id;
 		this.buyer_company_name = buyer_company_name;
 		this.buyer_ceo = buyer_ceo;
 		this.buyer_business_condition = buyer_business_condition;
@@ -76,12 +76,12 @@ public class BuyerDto implements Serializable {
 		this.buyer_homepage = buyer_homepage;
 	}
 
-	public BuyerDto(String buyer_id, String buyer_company_name, String buyer_ceo, String buyer_business_condition,
+	public BuyerDto(String seller_id, String buyer_company_name, String buyer_ceo, String buyer_business_condition,
 			String buyer_business_kinds, String buyer_company_num, String buyer_address1, String buyer_address2,
 			String buyer_address3, String buyer_admin, String buyer_email, String buyer_tel_num, String buyer_date,
 			String buyer_memo, String buyer_homepage) {
 		super();
-		this.buyer_id = buyer_id;
+		this.seller_id = seller_id;
 		this.buyer_company_name = buyer_company_name;
 		this.buyer_ceo = buyer_ceo;
 		this.buyer_business_condition = buyer_business_condition;
@@ -120,12 +120,6 @@ public class BuyerDto implements Serializable {
 
 	public int getBuyer_seq() {return buyer_seq;}
 	public void setBuyer_seq(int buyer_seq) {this.buyer_seq = buyer_seq;}
-
-	public String getBuyer_id() {return buyer_id;}
-
-	public void setBuyer_id(String buyer_id) {
-		this.buyer_id = buyer_id;
-	}
 
 	public String getBuyer_company_name() {
 		return buyer_company_name;
@@ -237,5 +231,13 @@ public class BuyerDto implements Serializable {
 
 	public void setBuyer_homepage(String buyer_homepage) {
 		this.buyer_homepage = buyer_homepage;
+	}
+
+	public String getSeller_id() {
+		return seller_id;
+	}
+
+	public void setSeller_id(String seller_id) {
+		this.seller_id = seller_id;
 	}
 }
