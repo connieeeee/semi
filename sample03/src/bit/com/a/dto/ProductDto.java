@@ -14,10 +14,12 @@ public class ProductDto implements Serializable {
 	private int product_piece_box;
 	private String product_standard;
 	
+	private int seq_num;
+	
 	public ProductDto() {}
 
 	public ProductDto(String seller_id, int product_seq, String product_name, String product_unit,
-			int product_trade_price, String product_sort, int product_piece_box, String product_standard) {
+			int product_trade_price, String product_sort, int product_piece_box, String product_standard, int seq_num) {
 		super();
 		this.seller_id = seller_id;
 		this.product_seq = product_seq;
@@ -27,6 +29,27 @@ public class ProductDto implements Serializable {
 		this.product_sort = product_sort;
 		this.product_piece_box = product_piece_box;
 		this.product_standard = product_standard;
+		this.seq_num =  seq_num;
+	}
+
+	public ProductDto(String seller_id, String product_sort) {
+		super();
+		this.seller_id = seller_id;
+		this.product_sort = product_sort;
+	}
+
+	public ProductDto(String seller_id, int seq_num) {
+		super();
+		this.seller_id = seller_id;
+		this.seq_num = seq_num;
+	}
+
+	public int getSeq_num() {
+		return seq_num;
+	}
+
+	public void setSeq_num(int seq_num) {
+		this.seq_num = seq_num;
 	}
 
 	public String getSeller_id() {

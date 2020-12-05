@@ -6,19 +6,51 @@
 <mapper namespace="Product">
 
 <select id="getProductList" parameterType="java.lang.String" resultType="bit.com.a.dto.ProductDto">
-	SELECT *
+	SELECT PRODUCT_SEQ, PRODUCT_SEQ, PRODUCT_UNIT, PRODUCT_SORT, PRODUCT_NAME, 
+			PRODUCT_TRADE_PRICE, PRODUCT_PIECE_BOX, PRODUCT_STANDARD
 	FROM PRODUCT
 	WHERE SELLER_ID = #{seller_id }
 </select>
 
-<insert id="add_product_sort" parameterType="java.lang.String">
-INSERT INTO PRODUCT_SORT
-VALUES(#{product_sort});
+<insert id="add_product" parameterType="bit.com.a.dto.ProductDto">
+	INSERT INTO PRODUCT
+	VALUES(SEQ_PRODUCT.NEXTVAL,#{seller_id},#{product_unit},#{product_sort},#{product_name},#{product_trade_price},#{product_piece_box},#{product_standard})
 </insert>
 
-<insert id="add_product_unit_cate" parameterType="java.lang.String">
-INSERT INTO PRODUCT_UNIT_CATE
-VALUES(SEQ_PRODUCT_UNIT_CATE.NEXTVAL,#{product_unit_cate });
-</insert>
+
+<select id="get_product_sort_list" parameterType="java.lang.String" resultType="bit.com.a.dto.ProductDto">
+	SELECT DISTINCT(PRODUCT_SORT)
+	FROM PRODUCT
+	WHERE SELLER_ID=#{seller_id }
+</select>
+
+<select id="get_product_unit_cate" parameterType="java.lang.String" resultType="bit.com.a.dto.ProductDto">
+	SELECT DISTINCT(PRODUCT_UNIT)
+	FROM PRODUCT
+	WHERE SELLER_ID=#{seller_id }
+</select>
+
+<select id="get_product_inform" parameterType="java.lang.Integer" resultType="bit.com.a.dto.ProductDto">
+	SELECT  PRODUCT_SEQ, PRODUCT_SEQ, PRODUCT_UNIT, PRODUCT_SORT, PRODUCT_NAME, 
+			PRODUCT_TRADE_PRICE, PRODUCT_PIECE_BOX, PRODUCT_STANDARD
+	FROM PRODUCT
+	WHERE PRODUCT_SEQ = #{product_seq }
+</select>
+
+<update id="update_product_inform" parameterType="bit.com.a.dto.ProductDto">
+	UPDATE PRODUCT SET 
+	PRODUCT_UNIT = #{product_unit },
+	PRODUCT_SORT = #{product_sort },
+	PRODUCT_NAME = #{product_name },
+	PRODUCT_TRADE_PRICE = #{product_trade_price },
+	PRODUCT_PIECE_BOX = #{product_piece_box },
+	PRODUCT_STANDARD = #{product_standard }
+	WHERE PRODUCT_SEQ  = #{product_seq }
+</update>
+
+<delete id="delete_product" parameterType="java.lang.Integer">
+	DELETE FROM PRODUCT
+	WHERE PRODUCT_SEQ = #{product_seq }
+</delete>
 
 </mapper>
