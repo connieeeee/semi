@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="order">
+
+<select id="get_tradebook_list" parameterType="java.lang.String" resultType="bit.com.a.dto.OrderDto">
+	SELECT OD.PRODUCT_SEQ, OD.SEQ_NUM, OD.ORDER_SORT, OD.ORDER_COUNT,
+		    OD.ORDER_PRICE, OD.PRICE_TAX, OD.PRICE_SUM, OL.BUYER_SEQ, OL.ORDER_DATE,
+		    OL.ORDER_SORT, OL.ORDER_TOTAL, OL.ORDER_SUPPLY_PRICE, OL.ORDER_TAX_VALUE,
+		    OL.ORDER_COLLECT_MONEY, OL.ORDER_NOT_COLLECT_MONEY, B.SELLER_ID
+	FROM ORDER_DETAIL OD, ORDER_LIST OL, BUYER B
+	WHERE OD.ORDER_NUM = OL.ORDER_NUM
+	AND OL.BUYER_SEQ = B.BUYER_SEQ
+	WHERE B.SELLER_ID = #{seller_id };
+</select>
+
+</mapper>
